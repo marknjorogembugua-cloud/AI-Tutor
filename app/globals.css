@@ -1,0 +1,457 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Every theme below only redefines these variables, so all components stay
+   theme-agnostic. Values are raw "R G B" triplets so Tailwind's
+   `<alpha-value>` opacity syntax keeps working (bg-brand/10, etc).
+--------------------------------------------------------------------------- */
+
+:root,
+[data-theme='aurora'] {
+    color-scheme: light;
+
+    --bg: 247 247 252;
+    --surface: 255 255 255;
+    --surface-muted: 239 241 249;
+    --surface-subtle: 250 250 253;
+
+    --border: 226 230 240;
+    --border-strong: 199 205 219;
+
+    --text: 15 23 42;
+    --text-soft: 51 65 85;
+    --text-mute: 94 110 133;
+
+    --brand: 79 70 229;
+    --brand-hover: 67 56 202;
+    --brand-soft: 238 242 255;
+    --brand-line: 199 210 254;
+    --brand-ink: 55 48 163;
+    --on-brand: 255 255 255;
+
+    --warn: 217 119 6;
+    --warn-soft: 255 251 235;
+    --warn-line: 253 230 138;
+    --warn-ink: 120 53 15;
+
+    --danger: 220 38 38;
+    --danger-soft: 254 242 242;
+
+    --shadow: 15 23 42;
+    --shadow-a-sm: 0.04;
+    --shadow-a: 0.06;
+    --shadow-a-md: 0.12;
+
+    --glow-1: 129 140 248;
+    --glow-2: 196 181 253;
+    --glow-3: 224 231 255;
+}
+
+[data-theme='mint'] {
+    color-scheme: light;
+
+    --bg: 245 253 249;
+    --surface: 255 255 255;
+    --surface-muted: 231 248 240;
+    --surface-subtle: 248 253 250;
+
+    --border: 214 238 227;
+    --border-strong: 167 226 199;
+
+    --text: 6 46 35;
+    --text-soft: 31 74 60;
+    --text-mute: 71 118 102;
+
+    --brand: 15 118 110;
+    --brand-hover: 17 94 89;
+    --brand-soft: 224 247 240;
+    --brand-line: 153 226 216;
+    --brand-ink: 6 95 70;
+    --on-brand: 255 255 255;
+
+    --warn: 180 83 9;
+    --warn-soft: 255 247 237;
+    --warn-line: 253 224 160;
+    --warn-ink: 120 53 15;
+
+    --danger: 190 40 40;
+    --danger-soft: 254 242 242;
+
+    --shadow: 6 46 35;
+    --shadow-a-sm: 0.04;
+    --shadow-a: 0.06;
+    --shadow-a-md: 0.11;
+
+    --glow-1: 45 212 191;
+    --glow-2: 167 243 208;
+    --glow-3: 204 251 241;
+}
+
+[data-theme='sunset'] {
+    color-scheme: light;
+
+    --bg: 255 247 243;
+    --surface: 255 255 255;
+    --surface-muted: 254 236 229;
+    --surface-subtle: 255 250 248;
+
+    --border: 253 219 210;
+    --border-strong: 250 178 162;
+
+    --text: 51 20 15;
+    --text-soft: 87 41 30;
+    --text-mute: 133 86 71;
+
+    --brand: 190 60 24;
+    --brand-hover: 170 50 18;
+    --brand-soft: 255 237 230;
+    --brand-line: 253 186 165;
+    --brand-ink: 170 51 20;
+    --on-brand: 255 255 255;
+
+    --warn: 180 83 9;
+    --warn-soft: 255 247 237;
+    --warn-line: 253 224 160;
+    --warn-ink: 120 53 15;
+
+    --danger: 190 40 40;
+    --danger-soft: 254 242 242;
+
+    --shadow: 51 20 15;
+    --shadow-a-sm: 0.04;
+    --shadow-a: 0.06;
+    --shadow-a-md: 0.12;
+
+    --glow-1: 251 146 60;
+    --glow-2: 253 186 116;
+    --glow-3: 254 215 170;
+}
+
+[data-theme='ocean'] {
+    color-scheme: light;
+
+    --bg: 244 250 255;
+    --surface: 255 255 255;
+    --surface-muted: 226 240 254;
+    --surface-subtle: 247 251 255;
+
+    --border: 203 226 245;
+    --border-strong: 154 196 232;
+
+    --text: 8 34 56;
+    --text-soft: 27 66 100;
+    --text-mute: 74 110 140;
+
+    --brand: 3 105 161;
+    --brand-hover: 2 95 145;
+    --brand-soft: 225 243 255;
+    --brand-line: 154 210 246;
+    --brand-ink: 12 100 148;
+    --on-brand: 255 255 255;
+
+    --warn: 180 83 9;
+    --warn-soft: 255 247 237;
+    --warn-line: 253 224 160;
+    --warn-ink: 120 53 15;
+
+    --danger: 190 40 40;
+    --danger-soft: 254 242 242;
+
+    --shadow: 8 34 56;
+    --shadow-a-sm: 0.04;
+    --shadow-a: 0.06;
+    --shadow-a-md: 0.12;
+
+    --glow-1: 56 189 248;
+    --glow-2: 125 211 252;
+    --glow-3: 186 230 253;
+}
+
+[data-theme='midnight'] {
+    color-scheme: dark;
+
+    --bg: 8 11 22;
+    --surface: 16 21 36;
+    --surface-muted: 24 31 50;
+    --surface-subtle: 19 25 42;
+
+    --border: 37 46 70;
+    --border-strong: 60 72 104;
+
+    --text: 233 237 247;
+    --text-soft: 178 188 210;
+    --text-mute: 134 146 175;
+
+    --brand: 129 140 248;
+    --brand-hover: 165 180 252;
+    --brand-soft: 30 34 71;
+    --brand-line: 62 70 140;
+    --brand-ink: 199 210 254;
+    --on-brand: 12 15 28;
+
+    --warn: 251 191 36;
+    --warn-soft: 46 37 15;
+    --warn-line: 87 69 22;
+    --warn-ink: 253 230 138;
+
+    --danger: 248 113 113;
+    --danger-soft: 63 24 28;
+
+    --shadow: 0 0 0;
+    --shadow-a-sm: 0.5;
+    --shadow-a: 0.4;
+    --shadow-a-md: 0.55;
+
+    --glow-1: 99 102 241;
+    --glow-2: 139 92 246;
+    --glow-3: 30 41 59;
+}
+
+[data-theme='forest'] {
+    color-scheme: dark;
+
+    --bg: 7 20 17;
+    --surface: 13 29 25;
+    --surface-muted: 20 40 35;
+    --surface-subtle: 16 33 29;
+
+    --border: 28 51 44;
+    --border-strong: 48 79 68;
+
+    --text: 228 240 235;
+    --text-soft: 170 199 189;
+    --text-mute: 124 156 145;
+
+    --brand: 52 211 153;
+    --brand-hover: 110 231 183;
+    --brand-soft: 17 55 45;
+    --brand-line: 32 84 68;
+    --brand-ink: 167 243 208;
+    --on-brand: 5 24 19;
+
+    --warn: 251 191 36;
+    --warn-soft: 48 39 13;
+    --warn-line: 90 71 20;
+    --warn-ink: 253 224 71;
+
+    --danger: 251 146 146;
+    --danger-soft: 66 25 27;
+
+    --shadow: 0 0 0;
+    --shadow-a-sm: 0.45;
+    --shadow-a: 0.38;
+    --shadow-a-md: 0.5;
+
+    --glow-1: 16 185 129;
+    --glow-2: 132 204 22;
+    --glow-3: 19 45 38;
+}
+
+@layer base {
+    html,
+    body {
+        height: 100%;
+    }
+
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        @apply bg-surface text-ink antialiased;
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    }
+
+    ::selection {
+        background: rgb(var(--brand) / 0.22);
+    }
+
+    :focus-visible {
+        @apply outline-none ring-2 ring-brand/70 ring-offset-2;
+        --tw-ring-offset-color: rgb(var(--bg));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+@layer components {
+    .card {
+        @apply bg-surface-card rounded-2xl border border-line shadow-card;
+    }
+
+    .card-hover {
+        @apply transition duration-200 ease-smooth hover:-translate-y-0.5 hover:shadow-lift hover:border-line-strong;
+    }
+
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl font-medium transition duration-200 ease-smooth
+               disabled:opacity-50 disabled:pointer-events-none;
+    }
+
+    .btn-primary {
+        @apply btn bg-brand text-ink-inverse px-4 py-2.5 shadow-soft hover:bg-brand-hover hover:shadow-card active:translate-y-px;
+    }
+
+    .btn-ghost {
+        @apply btn text-ink-soft hover:bg-surface-muted px-4 py-2.5;
+    }
+
+    .btn-outline {
+        @apply btn border border-line bg-surface-card text-ink hover:border-line-strong hover:bg-surface-muted px-4 py-2.5;
+    }
+
+    /*
+     * Destructive actions only. Kept visually distinct from btn-outline so the
+     * irreversible thing is the odd one out on the page rather than looking like
+     * any other button — and never used for anything reversible.
+     */
+    .btn-danger {
+        @apply btn border border-danger/40 bg-danger-soft text-danger hover:border-danger hover:bg-danger hover:text-ink-inverse px-4 py-2.5;
+    }
+
+    .input {
+        @apply w-full rounded-xl border border-line bg-surface-card px-4 py-2.5 text-ink placeholder:text-ink-mute
+               outline-none transition duration-200 focus:border-brand focus:shadow-ring;
+    }
+
+    .label {
+        @apply block text-sm font-medium text-ink-soft mb-1.5;
+    }
+
+    .chip {
+        @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+    }
+
+    .shell {
+        @apply mx-auto w-full max-w-6xl px-6;
+    }
+
+    /*
+     * Long-form prose for the privacy, terms and FAQ pages. Kept as a component
+     * class so headings and spacing stay consistent across all three without
+     * repeating a utility chain on every element.
+     *
+     * The measure is capped at 68ch, which is the widest line that stays easy
+     * to read at this size — beyond that the eye loses the start of the next
+     * line on a return sweep.
+     */
+    .prose-doc {
+        @apply mx-auto max-w-[68ch] text-base leading-relaxed text-ink-soft;
+    }
+
+    .prose-doc h2 {
+        @apply mt-12 text-2xl font-semibold tracking-tight text-ink;
+    }
+
+    .prose-doc h3 {
+        @apply mt-8 text-lg font-semibold text-ink;
+    }
+
+    .prose-doc p {
+        @apply mt-4 text-pretty;
+    }
+
+    .prose-doc ul,
+    .prose-doc ol {
+        @apply mt-4 space-y-2 pl-5;
+    }
+
+    .prose-doc ul {
+        @apply list-disc marker:text-ink-mute;
+    }
+
+    .prose-doc ol {
+        @apply list-decimal marker:text-ink-mute;
+    }
+
+    .prose-doc strong {
+        @apply font-semibold text-ink;
+    }
+
+    .prose-doc a {
+        @apply font-medium text-brand-ink underline underline-offset-2 hover:no-underline;
+    }
+
+    .prose-doc code {
+        @apply rounded bg-surface-muted px-1.5 py-0.5 font-mono text-[0.875em] text-ink;
+    }
+
+    .prose-doc dt {
+        @apply mt-6 font-semibold text-ink;
+    }
+
+    .prose-doc dd {
+        @apply mt-1.5;
+    }
+
+    /* Legal pages carry an "as of" date; give it room under the title. */
+    .prose-doc > p:first-child {
+        @apply mt-0;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .text-pretty {
+        text-wrap: pretty;
+    }
+
+    .scrollbar-slim {
+        scrollbar-width: thin;
+        scrollbar-color: rgb(var(--border-strong)) transparent;
+    }
+
+    .scrollbar-slim::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    .scrollbar-slim::-webkit-scrollbar-thumb {
+        background: rgb(var(--border-strong));
+        border-radius: 999px;
+    }
+
+    .scrollbar-slim::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .bg-grid {
+        background-image:
+            linear-gradient(to right, rgb(var(--border) / 0.7) 1px, transparent 1px),
+            linear-gradient(to bottom, rgb(var(--border) / 0.7) 1px, transparent 1px);
+        background-size: 56px 56px;
+    }
+
+    .bg-aurora {
+        background:
+            radial-gradient(60rem 30rem at 12% -8%, rgb(var(--glow-1) / 0.22), transparent 60%),
+            radial-gradient(48rem 26rem at 92% 0%, rgb(var(--glow-2) / 0.2), transparent 62%),
+            radial-gradient(40rem 24rem at 50% 108%, rgb(var(--glow-3) / 0.55), transparent 65%);
+    }
+
+    .skeleton {
+        @apply relative overflow-hidden bg-surface-muted;
+    }
+
+    .skeleton::after {
+        content: '';
+        @apply absolute inset-0 -translate-x-full;
+        background: linear-gradient(90deg, transparent, rgb(var(--surface) / 0.65), transparent);
+        animation: shimmer 1.6s infinite;
+    }
+}

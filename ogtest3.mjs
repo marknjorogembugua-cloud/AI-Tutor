@@ -1,0 +1,11 @@
+import { createElement as h } from 'react';
+import { ImageResponse } from 'next/dist/compiled/@vercel/og/index.node.js';
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#4f46e5"/><path d="M7 11.5 16 7.5l9 4-9 4-9-4Z" fill="#fff"/><path d="M10.5 14.5v5.2c0 .6.4 1.2 1 1.4a12 12 0 0 0 9 0c.6-.2 1-.8 1-1.4v-5.2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+const r = new ImageResponse(
+  h('div', { style: { display: 'flex' }, dangerouslySetInnerHTML: { __html: svg } }),
+  { width: 512, height: 512 }
+);
+const b = Buffer.from(await r.arrayBuffer());
+console.log('bytes:', b.length, 'magic:', b.subarray(0,4).toString('hex'));
+const fs = await import('node:fs');
+fs.writeFileSync('/tmp/opencode/icon-512.png', b);
